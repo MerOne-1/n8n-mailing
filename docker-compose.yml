@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: n8n_poc_mailing
+      POSTGRES_USER: n8n_poc_mailing
+      POSTGRES_PASSWORD: PocMailing_SecurePass123!
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n_poc_mailing"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  n8n:
+    image: n8nio/n8n:latest
+    restart: always
+    ports:
+      - "127.0.0.1:5679:5678"
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n_poc_mailing
+      - DB_POSTGRESDB_USER=n8n_poc_mailing
+      - DB_POSTGRESDB_PASSWORD=PocMailing_SecurePass123!
+      - N8N_HOST=n8n-mailing.kart-automation.xyz
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n-mailing.kart-automation.xyz/
+      - NODE_ENV=production
+      - GENERIC_TIMEZONE=Europe/Paris
+      - N8N_SECURE_COOKIE=false
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=336
+      - NODE_FUNCTION_ALLOW_BUILTIN=crypto
+      - N8N_EMAIL_MODE=smtp
+      - N8N_SMTP_HOST=smtp.gmail.com
+      - N8N_SMTP_PORT=587
+      - N8N_SMTP_USER=merwan.mezrag@rupturae.com
+      - N8N_SMTP_PASS=iqjybggbifrnmpzr
+      - N8N_SMTP_SENDER=merwan.mezrag@rupturae.com
+      - N8N_SMTP_SSL=false
+      - N8N_PUBLIC_API_ENABLED=true
+    volumes:
+      - n8n-data:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres-data:
+  n8n-data:
