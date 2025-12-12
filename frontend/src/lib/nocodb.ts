@@ -2,7 +2,7 @@
 // In development, use proxy (/api) to avoid CORS issues
 // In production, use the full URL
 const isDev = import.meta.env.DEV;
-const NOCODB_BASE_URL = isDev ? '' : (import.meta.env.VITE_NOCODB_URL || 'https://nocodb.kart-automation.xyz');
+const NOCODB_BASE_URL = isDev ? '' : (import.meta.env.VITE_NOCODB_URL || '');
 const NOCODB_TOKEN = import.meta.env.VITE_NOCODB_TOKEN || '';
 
 // Table IDs from POC_Mailing base

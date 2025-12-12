@@ -7,7 +7,7 @@ import { useInvoice } from "@/contexts/InvoiceContext";
 import { getInvoiceField } from "@/lib/nocodb";
 
 // n8n webhook base URL
-const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL || "https://n8n-mailing.kart-automation.xyz/webhook";
+const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL || "";
 
 interface Issue {
   id: string;

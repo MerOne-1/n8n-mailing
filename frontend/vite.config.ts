@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://nocodb.kart-automation.xyz',
+        target: process.env.VITE_NOCODB_URL || 'http://localhost:8080',
         changeOrigin: true,
         secure: true,
       },
