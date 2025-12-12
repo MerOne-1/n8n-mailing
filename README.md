@@ -2,6 +2,15 @@
 
 Frontend React pour la gestion et validation des factures extraites automatiquement par n8n.
 
+## Configuration rapide
+
+| Fichier | Ce qu'il faut configurer |
+|---------|-------------------------|
+| `frontend/.env` | `VITE_NOCODB_URL` et `VITE_NOCODB_TOKEN` (requis) |
+| `frontend/src/lib/nocodb.ts` | Les 3 Table IDs NocoDB (lignes 10-12) |
+
+> Le fichier `.env` doit être créé à partir de `.env.example`
+
 ## Stack technique
 
 - **React 19** + TypeScript
@@ -70,23 +79,7 @@ export const TABLES = {
 2. L'URL ressemble à : `https://nocodb.example.com/dashboard/#/nc/view/xxxxxxxx`
 3. Ou utilise l'API Explorer de NocoDB
 
-### 5. Configurer le proxy (développement)
-
-Édite `vite.config.ts` et remplace l'URL du proxy par ton instance NocoDB :
-
-```typescript
-server: {
-  proxy: {
-    '/api': {
-      target: 'https://ton-nocodb.example.com',  // <-- Ton URL NocoDB
-      changeOrigin: true,
-      secure: true,
-    },
-  },
-},
-```
-
-### 6. Lancer l'application
+### 5. Lancer l'application
 
 ```bash
 npm run dev
