@@ -41,7 +41,12 @@ cp .env.example .env
 ```env
 VITE_NOCODB_URL=https://ton-nocodb.example.com
 VITE_NOCODB_TOKEN=ton_token_api_nocodb
+
+# Optionnel - pour les boutons Valider/Rejeter (appels webhook n8n)
+VITE_N8N_WEBHOOK_URL=https://ton-n8n.example.com/webhook
 ```
+
+> **Note :** La variable `VITE_N8N_WEBHOOK_URL` est optionnelle. Sans elle, les boutons de validation/rejet ne fonctionneront pas, mais le reste du POC (affichage des factures, preview PDF, données extraites) sera pleinement fonctionnel.
 
 **Pour obtenir le token NocoDB :**
 1. Va dans NocoDB > clic sur ton avatar > Account Settings
