@@ -4,16 +4,19 @@ frontend/node_modules/
 
 # Build outputs
 frontend/dist/
+dist/
 
 # Environment files with secrets
 .env
 .env.local
 .env.*.local
 .env.md
+frontend/.env
 
 # IDE
 .vscode/
 .idea/
+.claude/
 
 # OS
 .DS_Store
@@ -22,3 +25,17 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# n8n / workflows (not part of frontend)
+docker-compose.yml
+workflows/
+*.json
+!frontend/**/*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!tsconfig.node.json
+
+# Other
+CONTEXT_RESUME.md
+claude.md
